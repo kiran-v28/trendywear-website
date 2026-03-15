@@ -6,32 +6,6 @@
     <title>Shopping Cart | TrendyWear</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<script>
-    function loadCart() {
-        const cart = JSON.parse(localStorage.getItem('myCart')) || [];
-        const itemsDiv = document.querySelector('.cart-items');
-        const totalDiv = document.querySelector('.cart-summary h3');
-        const navCount = document.querySelector('.nav-links li a[href="cart.html"]');
-
-        // Nav count update
-        navCount.innerText = `Cart (${cart.length})`;
-
-        if (cart.length > 0) {
-            itemsDiv.innerHTML = ""; // Empty message hatane ke liye
-            let total = 0;
-            cart.forEach(item => {
-                total += item.price;
-                itemsDiv.innerHTML += `
-                    <div style="display:flex; justify-content:space-between; padding:10px; border-bottom:1px solid #ddd;">
-                        <span>${item.name}</span>
-                        <span>Rs. ${item.price}</span>
-                    </div>`;
-            });
-            totalDiv.innerText = "Total: Rs. " + total;
-        }
-    }
-    window.onload = loadCart;
-</script>
 <body>
 
 <header>
@@ -45,24 +19,28 @@
     </nav>
 </header>
 
-<section class="cart-container">
+<section class="cart-container" style="max-width: 800px; margin: 40px auto; padding: 20px;">
     <h2>Your Shopping Cart</h2>
     
     <div class="cart-items">
-        <p>Your cart is currently empty.</p>
-    </div>
+        </div>
 
-    <div class="cart-summary">
-        <h3>Total: Rs. 0</h3>
-        <button class="cta-btn">Checkout Now</button>
-        <br><br>
-        <a href="products.html" style="color: #d4a373; text-decoration: none;">← Continue Shopping</a>
-    </div>
+    <div class="cart-summary" style="margin-top: 30px; padding: 20px; background: #fdfaf7; border-radius: 10px; border: 1px solid #d4a373;">
+    <h3 style="margin-bottom: 15px; color: #333;">Order Summary</h3>
+    <hr style="border: 0.5px solid #ddd;">
+    <p style="display: flex; justify-content: space-between; margin: 10px 0;">
+        <span>Subtotal:</span> <span id="subtotal">Rs. 0</span>
+    </p>
+    <p style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1.2rem; color: #d4a373;">
+        <span>Total Payable:</span> <span id="final-total">Rs. 0</span>
+    </p>
+    
+    <button onclick="processPayment()" class="cta-btn checkout-btn" style="width: 100%; background: #28a745; color: white; padding: 15px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; transition: 0.3s;">
+        Pay Now Securely
+    </button>
+</div>
 </section>
 
-<footer>
-    <p>© 2026 TrendyWear Online Store</p>
-</footer>
-
+<script src="script.js"></script>
 </body>
 </html>
