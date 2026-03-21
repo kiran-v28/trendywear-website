@@ -194,35 +194,78 @@ h1, h2, h3, .logo {
 }
 
 /* Footer */
-footer {
-    background: #1a1a1a;
-    padding: 40px 20px;
-    border-top: 1px solid #333;
-    text-align: center;
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    position: relative;
 }
 
-.footer-socials {
-    margin-bottom: 20px;
+.nav-links {
+    display: flex; /* Desktop par horizontal dikhane ke liye */
+    list-style: none;
+    gap: 30px;
 }
 
-.footer-socials a {
-    color: #fff;
+.nav-links li a {
     text-decoration: none;
-    margin: 0 15px;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
+    color: #1a1a1a;
+    font-weight: 500;
+    font-size: 0.9rem;
     text-transform: uppercase;
+    letter-spacing: 1px;
     transition: 0.3s;
 }
 
-.footer-socials a:hover {
-    color: #d4a373;
+.nav-links li a:hover {
+    color: #d4a373; /* Gold accent */
 }
 
-footer p {
-    font-size: 0.75rem;
-    color: #888;
-    letter-spacing: 1px;
+/* Desktop par hamburger icon hide rahega */
+.menu-toggle {
+    display: none;
+}
+
+/* --- Mobile Responsive (Media Query) --- */
+@media (max-width: 850px) {
+    .menu-toggle {
+        display: block; /* Mobile par dikhega */
+        cursor: pointer;
+    }
+
+    .menu-toggle .bar {
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        background-color: #1a1a1a;
+        display: block;
+    }
+
+    .nav-links {
+        display: none; /* Mobile par default hide */
+        flex-direction: column; /* Mobile par vertical list */
+        width: 100%;
+        position: absolute;
+        top: 70px; /* Navbar ki height ke hisab se */
+        left: 0;
+        background-color: #ffffff;
+        text-align: center;
+        padding: 20px 0;
+        border-bottom: 1px solid #eee;
+        z-index: 1000;
+    }
+
+    /* JavaScript jab 'active' class add karega */
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 15px 0;
+    }
 }
 
 /* Mobile Responsive */
@@ -384,64 +427,5 @@ footer p {
     
     .custom-form .cta-btn {
         width: 100%; /* Mobile par full width button */
-    }
-}
-/* --- Mobile Responsive Styles --- */
-@media (max-width: 768px) {
-    
-    /* 1. Header & Navigation */
-    .nav-links {
-        display: none; /* Mobile menu ke liye aapko hamburger icon chahiye hoga, abhi ke liye ye simplify karega */
-    }
-    
-    .logo {
-        font-size: 1.5rem;
-        text-align: center;
-        width: 100%;
-    }
-
-    /* 2. Hero Section */
-    .about-hero h1, .section-title {
-        font-size: 1.8rem; /* Choti screen par text bada na lage */
-        padding: 0 15px;
-    }
-
-    /* 3. Products Grid (Ek line mein ek hi product dikhega) */
-    .product-grid {
-        grid-template-columns: 1fr; 
-        padding: 10px;
-    }
-
-    /* 4. Contact & Forms (Stacking) */
-    .form-section {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    .contact-info-grid {
-        grid-template-columns: 1fr;
-    }
-
-    /* 5. Newsletter (Input aur Button alag lines mein) */
-    .newsletter-form {
-        flex-direction: column;
-        width: 90%;
-    }
-
-    .newsletter-form input, 
-    .newsletter-form .cta-btn {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-
-    /* 6. Images Adjustment */
-    .story-grid {
-        display: flex;
-        flex-direction: column;
-    }
-    
-    .story-img img {
-        height: 250px;
-        margin-top: 20px;
     }
 }
